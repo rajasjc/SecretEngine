@@ -788,5 +788,4 @@ def handler(event, context):
 
 ---
 
-*Maintained by the Security Engineering team.*
-*For incidents: raise a P1 in ServiceNow against CI=secret-rotation-platform.*
+*Maintained by the Raja Selvaraj *
