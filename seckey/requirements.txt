@@ -1,0 +1,30 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# seckey — Secret & Key Lifecycle Automation Platform
+# Python ≥ 3.10 required
+# ─────────────────────────────────────────────────────────────────────────────
+
+# ── Core (always required) ────────────────────────────────────────────────────
+requests>=2.31.0          # HTTP client for health checks, CMDB, notifications
+
+# ── Secret store connectors (install only what you need) ─────────────────────
+boto3>=1.34.0             # AWS Secrets Manager
+azure-keyvault-secrets>=4.8.0  # Azure Key Vault
+azure-identity>=1.16.0         # Azure DefaultAzureCredential
+hvac>=2.1.0               # HashiCorp Vault
+# sdkms>=4.0.0            # Fortanix DSM  (pip install sdkms)
+# pykmip>=0.10.0          # Thales CipherTrust (KMIP protocol)
+aliyun-python-sdk-kms>=2.16.3  # Alibaba Cloud KMS
+google-cloud-secret-manager>=2.20.0  # Google Cloud Secret Manager
+oci>=2.118.0              # Oracle Cloud Infrastructure
+
+# ── Authentication / IdP connectors (install only what you need) ─────────────
+msal>=1.28.0              # Microsoft Entra ID (Azure AD)
+python-keycloak>=3.9.0    # Keycloak OIDC
+# ForgeRock: no official Python SDK — uses requests (already above)
+# AWS IAM Identity Center: uses boto3 (already above)
+PyJWT>=2.8.0              # JWT token validation (Entra, Keycloak, ForgeRock)
+cryptography>=42.0.0      # TLS cert parsing, RSA key operations
+
+# ── Development / testing ─────────────────────────────────────────────────────
+pytest>=8.0.0
+pytest-cov>=4.1.0

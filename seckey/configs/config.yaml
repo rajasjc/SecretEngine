@@ -1,0 +1,71 @@
+# seckey configuration file
+# Values here are overridden by CLI flags and environment variables (SECKEY_*)
+#
+# Load with: python seckey.py --provider aws --provider-config '{"region":"ap-southeast-1"}'
+
+provider: local         # local | aws | azure | hashicorp | fortanix | thales | alibaba | gcp | oracle
+audit_log: audit.jsonl
+notify: stdout          # stdout | slack | teams | siem
+webhook: ""             # Slack / Teams / SIEM webhook URL
+
+# CMDB integration (optional — leave empty to use seeded local registry)
+cmdb_url: ""            # e.g. https://cmdb.internal/api
+cmdb_api_key: ""
+
+# ── Provider-specific ─────────────────────────────────────────────────────────
+aws:
+  region: ap-southeast-1
+  role_arn: ""           # Optional: cross-account role ARN
+
+azure:
+  vault_url: https://mykeyvault.vault.azure.net
+
+hashicorp:
+  address: https://vault.internal:8200
+  token: ""              # Or: export VAULT_TOKEN=...
+  mount: secret
+
+fortanix:
+  endpoint: https://dsm.fortanix.com
+  api_key: ""            # Or: export FORTANIX_API_KEY=...
+
+thales:
+  endpoint: https://ciphertrust.internal
+  username: ""
+  password: ""
+
+alibaba:
+  region: cn-hangzhou
+  access_key_id: ""
+  access_key_secret: ""
+
+gcp:
+  project_id: ""
+
+oracle:
+  vault_id: ""
+  compartment_id: ""
+
+# ── Authentication / IdP (next version) ──────────────────────────────────────
+auth:
+  provider: local        # local | entra | keycloak | forgerock | aws-iam
+
+  entra:
+    tenant_id: ""
+    client_id: ""
+    client_secret: ""
+
+  keycloak:
+    server_url: https://keycloak.internal/auth
+    realm: seckey
+    client_id: seckey-cli
+    client_secret: ""
+
+  forgerock:
+    base_url: https://am.internal/openam
+    realm: /seckey
+    client_id: seckey-cli
+    client_secret: ""
+
+  aws_iam:
+    region: ap-southeast-1
